@@ -1,7 +1,7 @@
 version: '2.1'
 services:
   kimai:
-    build: .
+    image: maestroalubia/kimai
     ports:
       - ${EXTERNAL_PORT:-127.0.0.1:8080}:80
   db:
