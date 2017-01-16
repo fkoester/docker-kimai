@@ -6,7 +6,7 @@ This repository also contains a `docker-compose.yaml` configuration file for sim
 
 ## Supported tags and respective Dockerfile links
 
-* `1.1.0`, `stable`, `latest` [(Dockerfile)](https://github.com/bringnow/docker-nominatim/blob/master/nominatim/Dockerfile)
+* `1.1.0`, `stable`, `latest` [(Dockerfile)](https://github.com/fkoester/docker-kimai/blob/master/Dockerfile)
 
 ## Getting started
 
