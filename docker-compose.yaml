@@ -1,0 +1,18 @@
+version: '2.1'
+services:
+  kimai:
+    build: .
+    ports:
+      - ${EXTERNAL_PORT:-127.0.0.1:8080}:80
+  db:
+    image: mariadb:10.1
+    environment:
+      - MYSQL_DATABASE=kimai
+      - MYSQL_USER=kimai
+      - MYSQL_PASSWORD=kimai
+      - MYSQL_ROOT_PASSWORD=fKc8dlZqhNOucISGiZA6
+    volumes:
+      - kimai-database:/var/lib/mysql
+volumes:
+  kimai-database:
+    external: true
