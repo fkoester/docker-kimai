@@ -4,6 +4,7 @@ services:
     image: maestroalubia/kimai
     ports:
       - ${EXTERNAL_PORT:-127.0.0.1:8080}:80
+    restart: always
   db:
     image: mariadb:10.1
     environment:
@@ -13,6 +14,7 @@ services:
       - MYSQL_ROOT_PASSWORD=fKc8dlZqhNOucISGiZA6
     volumes:
       - kimai-database:/var/lib/mysql
+    restart: always
 volumes:
   kimai-database:
     external: true
