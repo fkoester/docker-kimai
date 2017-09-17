@@ -17,6 +17,7 @@ This repository also contains a `docker-compose.yaml` configuration file for sim
   ```bash
   $ docker volume create --name kimai-database
   ```
+
 4. Create and start the docker containers using docker-compose:
 
   ```bash
@@ -31,20 +32,25 @@ This repository also contains a `docker-compose.yaml` configuration file for sim
 
 After completion, you should be able to access the Kimai instance but with an error at [http://localhost:8080](http://localhost:8080) (this is caused by the empty autoconf.php file which will be filled during the setup).
 
-To start the installation go to [http://localhost:8080/installer/index.php](http://localhost:8080/installer/index.php) and perform the initial installation. For the database connection choose the following parameters:
+5. To start the installation go to [http://localhost:8080/installer/index.php](http://localhost:8080/installer/index.php) and perform the initial installation. For the database connection choose the following parameters:
 
-* Host: *db*
-* User: *kimai*
-* Password: *kimai*
-* Database: *kimai* (Existing)
+    * Host: *db*
+    * User: *kimai*
+    * Password: *kimai*
+    * Database: *kimai* (Existing)
 
-After you finished the installation, you should remove the installer directory:
+After you finished the installation, you should set the `KIMAI_REMOVE_INSTALLATION` environment variable to '1' (default is '0') in docker-compose.yaml:
 
-```bash
-docker-compose exec kimai rm -rf /var/www/html/installer
+```yaml
+    environment:
+      - KIMAI_REMOVE_INSTALLATION=1
 ```
 
+This deletes the `installer/` directory on container start and prevents the warning after login.
+
 ## Configuration
+
+If you want to use LDAP authentication, you have to set the `KIMAI_AUTHENTICATOR` variable to `ldap` or `ldapadvanced` as discribed in the [Kimai authentication documentation](http://www.kimai.org/documentation/administrator/authenticator.html). And set your additional configuration in the `auth.php` accordingly.
 
 Create a file `.env` in the working directory with any of the following variables:
 
