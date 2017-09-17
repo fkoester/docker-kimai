@@ -1,4 +1,5 @@
-version: '2.1'
+version: '3'
+
 services:
   kimai:
     image: maestroalubia/kimai
@@ -6,7 +7,7 @@ services:
       - ${EXTERNAL_PORT:-127.0.0.1:8080}:80
     restart: always
   db:
-    image: mariadb:10.1
+    image: mariadb
     environment:
       - MYSQL_DATABASE=kimai
       - MYSQL_USER=kimai
@@ -15,3 +16,4 @@ services:
     volumes:
       - ${DB_VOLUME:-./kimai-database}:/var/lib/mysql
     restart: always
+

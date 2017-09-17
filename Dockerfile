@@ -6,6 +6,7 @@ EXPOSE 80
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
     unzip \
+    libldap2-dev \
  && rm -rf /var/lib/apt/lists/*
 
 ARG KIMAI_VERSION=1.1.0
@@ -18,4 +19,8 @@ RUN curl -L -o kimai.zip https://github.com/kimai/kimai/releases/download/${KIMA
   && chown -R www-data:www-data /var/www/html/ \
   && rm *.zip
 
-RUN docker-php-ext-install mysqli
+RUN docker-php-ext-install mysqli \
+  && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
+  && docker-php-ext-install ldap
+#  && ln -s /usr/lib/x86_64-linux-gnu/libldap.so /usr/lib/libldap.so \
+
