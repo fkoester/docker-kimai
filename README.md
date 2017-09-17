@@ -22,11 +22,16 @@ This repository also contains a `docker-compose.yaml` configuration file for sim
   ```bash
   $ docker-compose up
   ```
+
   This will command will:
+
   * Fetch the necessary docker images
   * Start the Apache and Mariadb services
+  * Setup persistent configuration in the autoconf.php and auth.php
 
-After completion, you should be able to access the Kimai instance at [http://localhost:8080](http://localhost:8080) and peform the initial installation. For the database connection choose the following parameters:
+After completion, you should be able to access the Kimai instance but with an error at [http://localhost:8080](http://localhost:8080) (this is caused by the empty autoconf.php file which will be filled during the setup).
+
+To start the installation go to [http://localhost:8080/installer/index.php](http://localhost:8080/installer/index.php) and perform the initial installation. For the database connection choose the following parameters:
 
 * Host: *db*
 * User: *kimai*
