@@ -22,5 +22,9 @@ RUN curl -L -o kimai.zip https://github.com/kimai/kimai/releases/download/${KIMA
 RUN docker-php-ext-install mysqli \
   && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
   && docker-php-ext-install ldap
-#  && ln -s /usr/lib/x86_64-linux-gnu/libldap.so /usr/lib/libldap.so \
+
+COPY entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["apache2-foreground"]
 
