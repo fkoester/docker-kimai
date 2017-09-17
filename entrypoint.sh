@@ -5,7 +5,7 @@ KIMAI_REMOVE_INSTALLATION=${KIMAI_REMOVE_INSTALLATION:0}
 if [ "${KIMAI_REMOVE_INSTALLATION}" == "1" ]
 then
   echo -n "=> Remove Kimai installation directory ... "
-#  rm -rf /var/www/html/installer
+  rm -rf /var/www/html/installer
   echo "done"
 fi
 
@@ -29,7 +29,9 @@ MATCH=$(egrep '^\$authenticator.*"'${KIMAI_AUTHENTICATOR}'"' /var/www/html/inclu
 if [ "$?" != "0" ]
 then
   # Match not found. This means we need to add the current selected authenticator
-  sed -i "s/\$authenticator/# \$authenticator/" /var/www/html/includes/autoconf.php
+
+  # Fixme: It would be nice to comment the $authenticator line. Unfortunately gives me an "Device or resource busy" error.
+  # sed -i "s/\$authenticator/# \$authenticator/" /var/www/html/includes/autoconf.php
   echo "\$authenticator = '${KIMAI_AUTHENTICATOR}';" >> /var/www/html/includes/autoconf.php
 fi
 
