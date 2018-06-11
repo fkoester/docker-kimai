@@ -44,3 +44,13 @@ docker-compose exec kimai rm -rf /var/www/html/installer
 Create a file `.env` in the working directory with any of the following variables:
 
 * `EXTERNAL_PORT`: The external port (and ip address) to bind to (default `127.0.0.1:8080`)
+
+## Upgrading Kimai
+
+In the [Dockerfile](Dockerfile), bump `KIMAI_VERSION` and the `KIMAI_SHA256`.
+
+Build the new image
+
+    docker build -t  maestroalubia/kimai .
+
+Restart docker-compose.
