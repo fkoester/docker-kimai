@@ -13,5 +13,9 @@ services:
       - MYSQL_PASSWORD=kimai
       - MYSQL_ROOT_PASSWORD=fKc8dlZqhNOucISGiZA6
     volumes:
-      - ${DB_VOLUME:-./kimai-database}:/var/lib/mysql
+      - kimai-database:/var/lib/mysql
     restart: always
+
+volumes:
+  kimai-database:
+

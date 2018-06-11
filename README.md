@@ -12,18 +12,14 @@ This repository also contains a `docker-compose.yaml` configuration file for sim
 
 1. Make sure you have current versions of Docker (>= 1.12) and docker-compose (>= 1.9).
 2. Clone this repository
-3. Create a docker volume named `kimai-database`:
-
-  ```bash
-  $ docker volume create --name kimai-database
-  ```
-4. Create and start the docker containers using docker-compose:
+3. Create and start the docker containers using docker-compose:
 
   ```bash
   $ docker-compose up
   ```
   This will command will:
   * Fetch the necessary docker images
+  * Create a volume for the database
   * Start the Apache and Mariadb services
 
 After completion, you should be able to access the Kimai instance at [http://localhost:8080](http://localhost:8080) and peform the initial installation. For the database connection choose the following parameters:
