@@ -6,7 +6,7 @@ This repository also contains a `docker-compose.yaml` configuration file for sim
 
 ## Supported tags and respective Dockerfile links
 
-* `1.1.0`, `stable`, `latest` [(Dockerfile)](https://github.com/fkoester/docker-kimai/blob/master/Dockerfile)
+* `1.3.1`, `1.1.0`, `stable`, `latest` [(Dockerfile)](https://github.com/RalfHerzog/docker-kimai/blob/master/Dockerfile)
 
 ## Getting started
 
@@ -51,7 +51,3 @@ This deletes the `installer/` directory on container start and prevents the warn
 ## Configuration
 
 If you want to use LDAP authentication, you have to set the `KIMAI_AUTHENTICATOR` variable to `ldap` or `ldapadvanced` as discribed in the [Kimai authentication documentation](http://www.kimai.org/documentation/administrator/authenticator.html). And set your additional configuration in the `auth.php` accordingly.
-
-Create a file `.env` in the working directory with any of the following variables:
-
-* `EXTERNAL_PORT`: The external port (and ip address) to bind to (default `127.0.0.1:8080`)
