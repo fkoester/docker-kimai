@@ -1,5 +1,7 @@
 .idea/
 kimai-database/
-includes/
+docker-compose.yml
+Dockerfile
 auth.php
 autoconf.php
+
