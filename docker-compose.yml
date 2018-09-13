@@ -6,7 +6,7 @@ services:
     ports:
     - 8080:80
     environment:
-    - KIMAI_REMOVE_INSTALLATION=1 # or 1
+    - KIMAI_REMOVE_INSTALLATION=0 # or 1
     # See http://www.kimai.org/documentation/administrator/authenticator.html
     - KIMAI_AUTHENTICATOR=ldapadvanced # ldap, ldapadvanced
     volumes:
