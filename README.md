@@ -6,7 +6,7 @@ This repository also contains a `docker-compose.yaml` configuration file for sim
 
 ## Supported tags and respective Dockerfile links
 
-* `1.1.0`, `stable`, `latest` [(Dockerfile)](https://github.com/fkoester/docker-kimai/blob/master/Dockerfile)
+* `1.3.1`, `1.1.0`, `stable`, `latest` [(Dockerfile)](https://github.com/RalfHerzog/docker-kimai/blob/master/Dockerfile)
 
 ## Getting started
 
@@ -17,30 +17,37 @@ This repository also contains a `docker-compose.yaml` configuration file for sim
   ```bash
   $ docker volume create --name kimai-database
   ```
+
 4. Create and start the docker containers using docker-compose:
 
   ```bash
   $ docker-compose up
   ```
+
   This will command will:
+
   * Fetch the necessary docker images
   * Start the Apache and Mariadb services
+  * Setup persistent configuration in the autoconf.php and auth.php
 
-After completion, you should be able to access the Kimai instance at [http://localhost:8080](http://localhost:8080) and peform the initial installation. For the database connection choose the following parameters:
+After completion, you should be able to access the Kimai instance but with an error at [http://localhost:8080](http://localhost:8080) (this is caused by the empty autoconf.php file which will be filled during the setup).
 
-* Host: *db*
-* User: *kimai*
-* Password: *kimai*
-* Database: *kimai* (Existing)
+5. To start the installation go to [http://localhost:8080/installer/index.php](http://localhost:8080/installer/index.php) and perform the initial installation. For the database connection choose the following parameters:
 
-After you finished the installation, you should remove the installer directory:
+    * Host: *db*
+    * User: *kimai*
+    * Password: *kimai*
+    * Database: *kimai* (Existing)
 
-```bash
-docker-compose exec kimai rm -rf /var/www/html/installer
+After you finished the installation, you should set the `KIMAI_REMOVE_INSTALLATION` environment variable to '1' (default is '0') in docker-compose.yaml:
+
+```yaml
+    environment:
+      - KIMAI_REMOVE_INSTALLATION=1
 ```
+
+This deletes the `installer/` directory on container start and prevents the warning after login.
 
 ## Configuration
 
-Create a file `.env` in the working directory with any of the following variables:
-
-* `EXTERNAL_PORT`: The external port (and ip address) to bind to (default `127.0.0.1:8080`)
+If you want to use LDAP authentication, you have to set the `KIMAI_AUTHENTICATOR` variable to `ldap` or `ldapadvanced` as discribed in the [Kimai authentication documentation](http://www.kimai.org/documentation/administrator/authenticator.html). And set your additional configuration in the `auth.php` accordingly.

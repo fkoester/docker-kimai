@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  kimai:
+    image: ralfherzog/kimai
+    ports:
+    - 8080:80
+    environment:
+    - KIMAI_REMOVE_INSTALLATION=0 # or 1
+    # See http://www.kimai.org/documentation/administrator/authenticator.html
+    - KIMAI_AUTHENTICATOR=ldapadvanced # ldap, ldapadvanced
+    volumes:
+    - ./autoconf.php:/var/www/html/includes/autoconf.php
+    - ./auth.php:/var/www/html/includes/auth.php
+
+  database:
+    image: mariadb
+    environment:
+    - MYSQL_DATABASE=kimai
+    - MYSQL_USER=kimai
+    - MYSQL_PASSWORD=kimai
+    - MYSQL_ROOT_PASSWORD=root
+    volumes:
+    - ./mysql:/var/lib/mysql
