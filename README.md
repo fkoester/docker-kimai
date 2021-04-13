@@ -34,7 +34,7 @@ After completion, you should be able to access the Kimai instance but with an er
 
 5. To start the installation go to [http://localhost:8080/installer/index.php](http://localhost:8080/installer/index.php) and perform the initial installation. For the database connection choose the following parameters:
 
-    * Host: *db*
+    * Host: *database*
     * User: *kimai*
     * Password: *kimai*
     * Database: *kimai* (Existing)
